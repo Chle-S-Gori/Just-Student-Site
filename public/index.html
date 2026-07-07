@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Сервисный инженер</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+      background: #f5f7fa;
+      color: #1e293b;
+      line-height: 1.6;
+      padding: 20px;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+    h1, h2 {
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 0.25rem;
+      color: #0f172a;
+    }
+    .subhead {
+      font-size: 1.25rem;
+      color: #475569;
+      margin-bottom: 2rem;
+      border-left: 4px solid #3b82f6;
+      padding-left: 1rem;
+    }
+    section {
+      margin-bottom: 3rem;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 2.5rem;
+    }
+    section:last-of-type {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h2::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 28px;
+      background: #3b82f6;
+      border-radius: 4px;
+    }
+    ul, ol {
+      padding-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    li {
+      margin-bottom: 0.4rem;
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .skill-box {
+      background: #f1f5f9;
+      padding: 16px 20px;
+      border-radius: 12px;
+    }
+    .skill-box h3 {
+      font-size: 1.1rem;
+      color: #0f172a;
+      margin-bottom: 6px;
+    }
+    .skill-box ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    .skill-box li::before {
+      content: "✓ ";
+      color: #3b82f6;
+      font-weight: 700;
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 15px;
+      margin-top: 10px;
+    }
+    .card {
+      background: #f8fafc;
+      border-radius: 16px;
+      padding: 20px 16px;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.2s;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+      border: 1px solid #e2e8f0;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: #3b82f6;
+      box-shadow: 0 8px 20px rgba(59,130,246,0.12);
+    }
+    .card .emoji {
+      font-size: 2.4rem;
+      display: block;
+      margin-bottom: 6px;
+    }
+    .card .title {
+      font-weight: 600;
+font-size: 0.95rem;
+    }
+    .card .desc {
+      font-size: 0.85rem;
+      color: #64748b;
+      margin-top: 4px;
+    }
+    /* Тест */
+    .test-question {
+      background: #f8fafc;
+      padding: 20px 24px;
+      border-radius: 16px;
+      margin-bottom: 20px;
+      border: 1px solid #e2e8f0;
+    }
+    .test-question p {
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .test-question label {
+      display: block;
+      margin: 6px 0;
+      cursor: pointer;
+    }
+    .test-question input[type="radio"] {
+      margin-right: 10px;
+      accent-color: #3b82f6;
+    }
+    .btn {
+      background: #3b82f6;
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+      display: inline-block;
+    }
+    .btn:hover {
+      background: #2563eb;
+      transform: scale(1.02);
+    }
+    #test-result {
+      margin-top: 20px;
+      padding: 16px 20px;
+      border-radius: 12px;
+      background: #f1f5f9;
+      font-weight: 500;
+    }
+    .highlight {
+      background: #dbeafe;
+      padding: 2px 8px;
+      border-radius: 20px;
+      color: #1e40af;
+    }
+    .footer {
+      margin-top: 2rem;
+      text-align: center;
+      color: #94a3b8;
+      font-size: 0.9rem;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 2rem;
+    }
+    @media (max-width: 640px) {
+      .container { padding: 20px; }
+      h1 { font-size: 2.2rem; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .card-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Главный экран -->
+  <header>
+    <h1>🔧 Сервисный инженер</h1>
+    <div class="subhead">Профессия, которая держит технику в рабочем состоянии</div>
+  </header>
+
+  <!-- Кто это простыми словами -->
+  <section>
+    <h2>Кто это простыми словами</h2>
+    <p style="font-size:1.1rem;">Сервисный инженер — это <strong>технический специалист</strong>, который выезжает к клиентам, чтобы устанавливать, настраивать, чинить и обслуживать сложное оборудование. Он — «скорая помощь» для техники: если что-то сломалось, он приезжает, находит причину и устраняет неисправность.</p>
+  </section>
+
+  <!-- 5-7 рабочих задач -->
+  <section>
+    <h2>Типичные задачи</h2>
+    <ul>
+      <li><strong>Диагностика</strong> — поиск неисправностей с помощью тестеров, ПО и опыта.</li>
+      <li><strong>Ремонт и замена</strong> узлов: от плат до механических частей.</li>
+      <li><strong>Настройка и калибровка</strong> оборудования под нужды клиента.</li>
+      <li><strong>Плановое техническое обслуживание</strong> (ТО) — профилактика поломок.</li>
+      <li><strong>Консультации</strong> пользователей по правильной эксплуатации.</li>
+      <li><strong>Составление отчётов</strong> и ведение базы ремонтов.</li>
+      <li><strong>Обучение</strong> младших коллег или стажёров.</li>
+    </ul>
+  </section>
+
+  <!-- Жесткие и мягкие навыки -->
+  <section>
+    <h2>Навыки</h2>
+    <div class="skills-grid">
+      <div class="skill-box">
+        <h3>🧠 Жесткие (Hard)</h3>
+        <ul>
+          <li>Знание электроники и схемотехники</li>
+          <li>Чтение технической документации</li>
+          <li>Работа с измерительными приборами</li>
+          <li>Навыки пайки и монтажа</li>
+          <li>Программирование микроконтроллеров (иногда)</li>
+        </ul>
+      </div>
+      <div class="skill-box">
+        <h3>🤝 Мягкие (Soft)</h3>
+        <ul>
+          <li>Коммуникабельность (общение с клиентами)</li>
+          <li>Стрессоустойчивость (авралы и сложные поломки)</li>
+          <li>Аналитическое мышление</li>
+          <li>Внимание к деталям</li>
+          <li>Самоорганизация и планирование</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Как начать карьеру студенту -->
+<section>
+    <h2>Как начать карьеру студенту</h2>
+    <ol>
+      <li><strong>Учись на инженерную специальность</strong> (радиотехника, электроника, приборостроение).</li>
+      <li><strong>Изучай схемы</strong> и устройство реальной техники — не только теорию.</li>
+      <li><strong>Практикуйся</strong> в ремонте: старые ПК, бытовая техника, Arduino.</li>
+      <li><strong>Ищи стажировки</strong> в сервисных центрах или у производителей.</li>
+      <li><strong>Изучай английский</strong> — почти вся документация на нём.</li>
+      <li><strong>Развивай soft skills</strong> через волонтёрство или работу с людьми.</li>
+      <li><strong>Собирай портфолио</strong> выполненных ремонтов и проектов.</li>
+    </ol>
+  </section>
+
+  <!-- Один день из жизни -->
+  <section>
+    <h2>Один день из жизни</h2>
+    <p><strong>08:00</strong> — Приезд в офис, получение заявок от диспетчера.</p>
+    <p><strong>09:30</strong> — Выезд к клиенту (30–60 км). На месте — диагностика оборудования, замена модуля.</p>
+    <p><strong>13:00</strong> — Обед в пути (или быстрый перекус).</p>
+    <p><strong>14:00</strong> — Второй вызов: плановое ТО (чистка, проверка параметров).</p>
+    <p><strong>17:00</strong> — Возвращение в офис, оформление отчётов, обсуждение сложных случаев с коллегами.</p>
+    <p><strong>19:00</strong> — Завершение рабочего дня. Иногда — дежурство по телефону.</p>
+    <p class="highlight" style="display:inline-block; margin-top:8px;">График часто ненормированный, но каждый день — новый вызов!</p>
+  </section>
+
+  <!-- Почему роль важна для ЭРТХ -->
+  <section>
+    <h2>Почему роль важна для ЭРТХ</h2>
+    <p>ЭРТХ (например, предприятие по производству электроники) выпускает сложную технику, которая используется в промышленности, медицине или связи. Без сервисных инженеров:</p>
+    <ul>
+      <li>Оборудование простаивало бы после первой же поломки;</li>
+      <li>Клиенты теряли бы доверие к бренду;</li>
+      <li>Репутация компании падала бы из-за долгих ремонтов.</li>
+    </ul>
+    <p>Сервисный инженер — <strong>лицо компании</strong> на месте, он поддерживает её авторитет и обеспечивает бесперебойную работу клиентов.</p>
+  </section>
+
+  <!-- Интерактив: тест -->
+  <section>
+    <h2>🧪 Проверь свои знания</h2>
+    <p>Ответь на 3 вопроса о сервисных инженерах.</p>
+
+    <div id="test-container">
+      <div class="test-question">
+        <p>1. Что делает сервисный инженер в первую очередь при выезде?</p>
+        <label><input type="radio" name="q1" value="a" /> Заменяет все платы</label>
+        <label><input type="radio" name="q1" value="b" /> Проводит диагностику</label>
+        <label><input type="radio" name="q1" value="c" /> Переустанавливает ПО</label>
+      </div>
+
+      <div class="test-question">
+        <p>2. Какой навык НЕ относится к мягким (soft) ?</p>
+        <label><input type="radio" name="q2" value="a" /> Коммуникабельность</label>
+        <label><input type="radio" name="q2" value="b" /> Пайка компонентов</label>
+        <label><input type="radio" name="q2" value="c" /> Стрессоустойчивость</label>
+      </div>
+
+      <div class="test-question">
+        <p>3. Почему сервисный инженер важен для компании?</p>
+        <label><input type="radio" name="q3" value="a" /> Он продаёт оборудование</label>
+        <label><input type="radio" name="q3" value="b" /> Он поддерживает работу техники у клиентов</label>
+        <label><input type="radio" name="q3" value="c" /> Он проектирует новые устройства</label>
+      </div>
+
+      <button class="btn" id="check-test">Проверить ответы</button>
+      <div id="test-result"></div>
+    </div>
+  </section>
+
+  <div class="footer">
+    Сделано с ❤️ для студентов и будущих сервисных инженеров.
+    Сделано:
+    Толщин Николай Александрович, Раскин Тимофей Алексеевич, Душтурова Наира Рафаил кызы, Марочкин Максим Сергеевич, Гречин Сергей Алексеевич
+  </div>
+</div>
+
+<script>
+  document.getElementById('check-test').addEventListener('click', function() {
+    const answers = {
+      q1: 'b',
+      q2: 'b',
+      q3: 'b'
+    };
+    let correct = 0;
+    let total = 3;
+for (let i = 1; i <= total; i++) {
+      const name = 'q' + i;
+      const radios = document.getElementsByName(name);
+      let selected = null;
+      for (let radio of radios) {
+        if (radio.checked) {
+          selected = radio.value;
+          break;
+        }
+      }
+      if (selected === answers[name]) {
+        correct++;
+      }
+    }
+
+    const resultDiv = document.getElementById('test-result');
+    if (correct === total) {
+      resultDiv.innerHTML = "✅ Отлично! Вы ответили правильно на все " + total +" вопросов!";
+      resultDiv.style.background = '#dcfce7';
+      resultDiv.style.color = '#166534';
+    } else {
+      resultDiv.innerHTML = "📝 Вы ответили правильно на " + correct +" из " + total +". Попробуйте ещё раз!";
+      resultDiv.style.background = '#fee2e2';
+      resultDiv.style.color = '#991b1b';
+    }
+  });
+</script>
+
+</body>
+</html>
